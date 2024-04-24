@@ -1,10 +1,13 @@
 
 package br.senac.tadsD.sesh.exemplosspringmvc.controller;
 
-import br.senac.tadsD.sesh.exemplosspringmvc.Teste.Dados;
+import br.senac.tadsD.sesh.exemplosspringmvc.teste.Dados;
+import br.senac.tadsD.sesh.exemplosspringmvc.teste.Usuario;
+import jakarta.validation.Valid;
 import java.time.LocalDateTime;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -50,30 +53,5 @@ public class ExemploController {
         mv.addObject("dataHora",LocalDateTime.now());
         return mv;
     }
-    
-    @PostMapping("/post-form")
-    public RedirectView saas (@ModelAttribute Dados dadosRecebidos,RedirectAttributes ra){
-        ra.addFlashAttribute("dados",dadosRecebidos);
-        if(dadosRecebidos.isValid()){
-            return new RedirectView("form/sucess",true);
-        }
-        else
-            return new RedirectView("form/fail",true);
-        
-       
-    }
-    
-    @GetMapping("form/sucess")
-    public ModelAndView soos (){
-        ModelAndView mv = new ModelAndView("sucess");
-         return mv;
-    }
-    
-    @GetMapping("form/fail")
-    public ModelAndView sees (){
-        ModelAndView mv = new ModelAndView("fail");
-         return mv;
-    }
-    
     
 }
